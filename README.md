@@ -25,10 +25,8 @@ pip install -e .
 
       env.seed(ep_i)
       obs_n = env.reset()
-      i=0
 
       while not all(done_n):
-          i+=1
           action_n = [env.action_space[agent_id].sample() for agent_id in range(env.n_agents)]
           obs_n, reward_n, done_n, info = env.step(action_n)
           ep_reward += sum(reward_n)
