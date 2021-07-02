@@ -19,19 +19,20 @@ pip install -e .
   ep_reward = 0
 
   env = gym.make('robots-v2', n_agents=1)
-  for ep_i in range(100000):
-      done_n = [False for _ in range(env.n_agents)]
-      ep_reward = 0
+  if __name == '__main__':
+    for ep_i in range(100000):
+        done_n = [False for _ in range(env.n_agents)]
+        ep_reward = 0
 
-      env.seed(ep_i)
-      obs_n = env.reset()
+        env.seed(ep_i)
+        obs_n = env.reset()
 
-      while not all(done_n):
-          action_n = [env.action_space[agent_id].sample() for agent_id in range(env.n_agents)]
-          obs_n, reward_n, done_n, info = env.step(action_n)
-          ep_reward += sum(reward_n)
-          env.render()
-      print('Episode #{} Reward: {}'.format(ep_i, ep_reward))
-  env.close()
+        while not all(done_n):
+            action_n = [env.action_space[agent_id].sample() for agent_id in range(env.n_agents)]
+            obs_n, reward_n, done_n, info = env.step(action_n)
+            ep_reward += sum(reward_n)
+            env.render()
+        print('Episode #{} Reward: {}'.format(ep_i, ep_reward))
+    env.close()
 ```
 
